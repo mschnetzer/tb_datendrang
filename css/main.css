@@ -33,7 +33,7 @@
   --color-mulberry: #744A6F;
   --color-sea: #4A7484;
   --color-link: #A63C30;
-  --color-link-hover: #AC8B12;
+  --color-link-hover: #4F735B;
   --nav-item-offset: 3vw;
   --nav-item-hover-offset: 2%;
   --easing: cubic-bezier(.8, 0, .2, 1);
@@ -62,6 +62,13 @@ body, html {
   width: 100%;
   margin: 0;
   padding: 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
 }
 
 a {
@@ -142,6 +149,7 @@ a:hover {
   font-family: "Roboto Slab", serif;
   font-size: 3vmin;
   color: black;
+  margin-top: 2rem;
 }
 
 .nav-list,
@@ -183,19 +191,15 @@ a:hover {
 .nav-item:hover:not(:focus) {
   filter: brightness(1.2);
 }
-.nav-item:focus,
-.nav-item.is-open {
-  transform: translateX(0vw);
+.nav-item:focus {
   outline: none;
 }
-.nav-item:focus ~ .nav-item,
-.nav-item.is-open ~ .nav-item {
-  transform: none;
-}
+.nav-item:focus,
 .nav-item:focus-within,
 .nav-item.is-open {
   transform: translateX(0vw);
 }
+.nav-item:focus ~ .nav-item,
 .nav-item:focus-within ~ .nav-item,
 .nav-item.is-open ~ .nav-item {
   transform: none;
@@ -259,6 +263,12 @@ a:hover {
   overflow-y: auto;
   grid-column: 1 / 2;
   grid-row: 4 / 8;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.post-content::-webkit-scrollbar {
+  display: none;
 }
 
 .post-figure {
