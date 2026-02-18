@@ -8,6 +8,9 @@
     const modalClose = document.querySelector(".figure-close");
     const modalDownload = document.querySelector(".figure-download");
     const modalCode = document.querySelector(".figure-modal-code");
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let isTouchMove = false;
     if (!navList) {
       if (modal && modalImage && modalClose && modalDownload) {
         modalClose.addEventListener("click", () => {
@@ -20,7 +23,24 @@
       }
       return;
     }
+    navList.addEventListener("touchstart", (event) => {
+      touchStartX = event.touches[0].clientX;
+      touchStartY = event.touches[0].clientY;
+      isTouchMove = false;
+    }, { passive: true });
+    navList.addEventListener("touchmove", (event) => {
+      const touchEndX = event.touches[0].clientX;
+      const touchEndY = event.touches[0].clientY;
+      const diffX = Math.abs(touchEndX - touchStartX);
+      const diffY = Math.abs(touchEndY - touchStartY);
+      if (diffX > 10 || diffY > 10) {
+        isTouchMove = true;
+      }
+    }, { passive: true });
     navList.addEventListener("click", (event) => {
+      if (isTouchMove) {
+        return;
+      }
       if (event.target.closest(".post-figure")) {
         return;
       }
@@ -90,6 +110,25 @@
         modalDownload.removeAttribute("href");
         modalCode.removeAttribute("href");
       });
+      let lastTouchEnd = 0;
+      modalClose.addEventListener("touchend", (event) => {
+        const now = Date.now();
+        if (now - lastTouchEnd <= 300) {
+          event.preventDefault();
+        }
+        lastTouchEnd = now;
+      }, { passive: false });
+    }
+    const originalOverflow = document.body.style.overflow;
+    const observer = new MutationObserver(() => {
+      if (modal && modal.classList.contains("is-open")) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = originalOverflow;
+      }
+    });
+    if (modal) {
+      observer.observe(modal, { attributes: true, attributeFilter: ["class"] });
     }
   });
 })();

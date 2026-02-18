@@ -64,6 +64,8 @@ body, html {
   padding: 0;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
 }
 
 html::-webkit-scrollbar,
@@ -265,6 +267,8 @@ a:hover {
   grid-row: 4 / 8;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
 .post-content::-webkit-scrollbar {
@@ -391,4 +395,238 @@ header {
 footer {
   border-top: 1px solid #222;
   margin-top: 1rem;
+}
+/* Responsive Design - Media Queries */
+
+/* Tablet and smaller screens */
+@media screen and (max-width: 1024px) {
+  :root {
+    --nav-item-offset: 4vw;
+  }
+
+  .title {
+    font-size: 12vmin;
+    right: 4vw;
+  }
+
+  .subtext {
+    width: 40vw;
+    font-size: 3.5vmin;
+    right: 4vw;
+  }
+
+  .post-title {
+    font-size: 3.5vmin;
+    margin: 8vh 1vw 2vh 4vw;
+  }
+
+  .post-content {
+    font-size: 2.3vmin;
+    margin-left: 4vw;
+  }
+
+  .nav-item .topic {
+    font-size: 2.8vmin;
+  }
+}
+
+/* Mobile devices */
+@media screen and (max-width: 768px) {
+  :root {
+    --nav-item-offset: 5vw;
+  }
+
+  .bar-navigation {
+    touch-action: pan-y;
+  }
+
+  .title {
+    font-size: 15vmin;
+    top: 8vh;
+    right: 3vw;
+  }
+
+  .subtext {
+    width: 55vw;
+    font-size: 4vmin;
+    top: 22vh;
+    right: 3vw;
+  }
+
+  .nav-item {
+    grid-template-columns: 1fr 15% auto;
+  }
+
+  .post-title {
+    font-size: 4.5vmin;
+    margin: 6vh 1vw 2vh 3vw;
+  }
+
+  .post-content {
+    font-size: 3vmin;
+    margin-left: 3vw;
+    max-height: 65vh;
+    line-height: 1.6;
+  }
+
+  .nav-item:before {
+    font-size: 4vmin;
+    padding-right: 0.5vw;
+  }
+
+  .nav-item .topic {
+    font-size: 3.5vmin;
+    bottom: 4vh;
+  }
+
+  .post-date {
+    font-size: 2.5vmin;
+  }
+
+  .figure-modal {
+    padding: 2vh 2vw;
+  }
+
+  .figure-modal-image {
+    max-width: 90vw;
+    max-height: 60vh;
+  }
+
+  .figure-close {
+    width: 38px;
+    height: 38px;
+    font-size: 24px;
+  }
+
+  .figure-download,
+  .figure-modal-code {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+  :root {
+    --nav-item-offset: 6vw;
+  }
+
+  .title {
+    font-size: 18vmin;
+    top: 6vh;
+    right: 2vw;
+  }
+
+  .subtext {
+    width: 65vw;
+    font-size: 4.5vmin;
+    top: 20vh;
+    right: 2vw;
+  }
+
+  .nav-item {
+    grid-template-columns: 1fr 12% auto;
+  }
+
+  .post-title {
+    font-size: 5.5vmin;
+    margin: 5vh 0.5vw 2vh 2vw;
+  }
+
+  .post-content {
+    font-size: 3.5vmin;
+    margin-left: 2vw;
+    max-height: 60vh;
+    line-height: 1.7;
+    width: 95%;
+  }
+
+  .nav-item:before {
+    font-size: 4.5vmin;
+    padding-right: 0.3vw;
+  }
+
+  .nav-item .topic {
+    font-size: 4vmin;
+    bottom: 3vh;
+    right: 0.3vw;
+  }
+
+  .post-date {
+    font-size: 3vmin;
+  }
+
+  .figure-modal {
+    padding: 1vh 1vw;
+    gap: 1rem;
+  }
+
+  .figure-modal-image {
+    max-width: 95vw;
+    max-height: 55vh;
+  }
+
+  .figure-close {
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+  }
+
+  .figure-download,
+  .figure-modal-code {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .nav-item {
+    cursor: pointer;
+  }
+
+  .nav-item:hover:not(:focus) {
+    filter: none;
+  }
+
+  .post-figure {
+    cursor: pointer;
+  }
+
+  /* Larger tap targets for touch */
+  .figure-close {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .figure-download,
+  .figure-modal-code {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .title {
+    top: 5vh;
+    font-size: 10vmin;
+  }
+
+  .subtext {
+    top: 15vh;
+    font-size: 3vmin;
+  }
+
+  .post-title {
+    margin: 4vh 1vw 1vh 3vw;
+    font-size: 3.8vmin;
+  }
+
+  .post-content {
+    max-height: 50vh;
+    font-size: 2.5vmin;
+  }
 }
