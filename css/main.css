@@ -222,10 +222,6 @@ a:hover {
   padding-top: 5vh;
   mix-blend-mode: soft-light;
   z-index: 1;
-  -webkit-animation: inherit;
-          animation: inherit;
-  -webkit-animation-name: slide-up;
-          animation-name: slide-up;
 }
 
 .nav-item:after {
